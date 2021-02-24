@@ -1,49 +1,46 @@
 $(() => {
   getCats(30);
 
-  $("#search-button").on("click", async function () {
-    const val = parseInt($(".bar input").val());
-    if (!isNaN(val) && val > 0) {
-      getCats(Math.min(val, 50));
-    }
+  $(".bar input").on("keydown", (e) => {
+    if (e.key == "Enter") searchCats();
+    else if (e.key == "," || e.key == ".") e.preventDefault();
   });
+  $("#search-button").on("click", () => searchCats());
 
   $("#filter-ids .up").on("click", () => {
-    CATS_DATA.sort((a, b) => (a._id > b._id ? 1 : -1));
-    reloadCats();
+    sortCats((a, b) => (a._id > b._id ? 1 : -1));
   });
   $("#filter-ids .down").on("click", () => {
-    CATS_DATA.sort((a, b) => (a._id < b._id ? 1 : -1));
-    reloadCats();
+    sortCats((a, b) => (a._id < b._id ? 1 : -1));
   });
 
   $("#filter-dates .up").on("click", () => {
-    CATS_DATA.sort((a, b) => (a.date > b.date ? 1 : -1));
-    reloadCats();
+    sortCats((a, b) => (a.createdAt > b.createdAt ? 1 : -1));
   });
   $("#filter-dates .down").on("click", () => {
-    CATS_DATA.sort((a, b) => (a.date < b.date ? 1 : -1));
-    reloadCats();
+    sortCats((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   });
 
-  $("#reload").on("click", () => {
-    getCats(CATS_DATA.length);
-  });
+  $("#reload").on("click", () => getCats(CATS_DATA.length));
 
-  $("#popup").on("mousedown", function () {
-    $(this).css("visibility", "hidden");
-  });
-
-  $("#popup-box").on("mousedown", (e) => {
-    e.stopPropagation();
-  });
-
-  $("#popup-close").on("click", function () {
-    $("#popup").css("visibility", "hidden");
-  });
+  $("#popup-box").on("mousedown", (e) => e.stopPropagation());
+  $("#popup").on("mousedown", hidePopup);
+  $("#popup-close").on("click", hidePopup);
 });
 
 let CATS_DATA = [];
+
+function searchCats() {
+  const val = parseInt($(".bar input").val());
+  if (!isNaN(val) && val > 0) {
+    getCats(Math.min(val, 99));
+  }
+}
+
+function sortCats(func) {
+  CATS_DATA.sort(func);
+  reloadCats();
+}
 
 async function getCats(amount) {
   await fetchCats(amount);
@@ -57,30 +54,38 @@ async function fetchCats(amount) {
     .then((data) => (CATS_DATA = data));
   if (amount > 1) {
     CATS_DATA.forEach((e) => {
-      e.date = e.createdAt.substr(0, e.createdAt.indexOf("T"));
       e.img = Math.floor(Math.random() * 2);
     });
   } else {
-    CATS_DATA.date = CATS_DATA.createdAt.substr(0, CATS_DATA.createdAt.indexOf("T"));
     CATS_DATA.img = Math.floor(Math.random() * 2);
     CATS_DATA = [CATS_DATA];
   }
 }
 
+function formatDate(date) {
+  return date.substr(0, date.indexOf("T"));
+}
+
 function reloadCats() {
   $("#content").empty();
   CATS_DATA.forEach((e) => {
-    const { _id, date, text, img } = e;
-    $("#content").append(createCatElement(_id, date, text, img));
+    const { _id, createdAt, text, img } = e;
+    $("#content").append(
+      createCatElement(_id, formatDate(createdAt), text, img)
+    );
   });
 }
 
 function showPopup(id, date, text, img) {
-  $("#popup h1").text(id);
+  $("#popup h1").text(`id: ${id}`);
   $("#popup h3").text(date);
   $("#popup p").text(text);
   $("#popup-icon").attr("src", `gfx/cat${img}.svg`);
   $("#popup").css("visibility", "visible");
+}
+
+function hidePopup() {
+  $("#popup").css("visibility", "hidden");
 }
 
 function createCatElement(id, date, text, img) {
