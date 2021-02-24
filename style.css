@@ -172,6 +172,12 @@ header a.active {
           align-items: center;
 }
 
+#wrapper #toolbar #search .bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 #wrapper #toolbar #search .bar::before {
   content: "";
   position: absolute;
@@ -197,9 +203,19 @@ header a.active {
   visibility: visible;
 }
 
+#wrapper #toolbar #search .bar input:not(:valid) ~ button {
+  background-color: #ececec !important;
+  color: #fff;
+  outline: none;
+}
+
+#wrapper #toolbar #search .bar input:not(:valid) ~ button:hover {
+  cursor: default;
+}
+
 #wrapper #toolbar #search .bar p {
   visibility: hidden;
-  color: red;
+  color: #ff000f;
   position: absolute;
   font-size: 10px;
   font-weight: 400;
@@ -230,7 +246,7 @@ header a.active {
 }
 
 #wrapper #toolbar #search input:not(:valid):not(:placeholder-shown) {
-  border-color: red;
+  border-color: #ff000f;
 }
 
 #wrapper #toolbar #search input:valid {
@@ -242,6 +258,19 @@ header a.active {
 }
 
 #wrapper #toolbar #search button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 16px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
   width: 84px;
   height: 28px;
   border: none;

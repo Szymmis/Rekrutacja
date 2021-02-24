@@ -127,6 +127,8 @@ header {
       align-items: center;
 
       .bar {
+        display: flex;
+
         &::before {
           content: "";
           position: absolute;
@@ -147,15 +149,23 @@ header {
           height: 1px;
         }
 
-        input:not(:valid) {
-          &:not(:placeholder-shown) + p {
-            visibility: visible;
+        input:not(:valid):not(:placeholder-shown) + p {
+          visibility: visible;
+        }
+
+        input:not(:valid) ~ button {
+          background-color: #ececec !important;
+          color: #fff;
+          outline: none;
+
+          &:hover {
+            cursor: default;
           }
         }
 
         p {
           visibility: hidden;
-          color: red;
+          color: #ff000f;
           position: absolute;
           font-size: 10px;
           font-weight: 400;
@@ -186,7 +196,7 @@ header {
 
         &:not(:valid) {
           &:not(:placeholder-shown) {
-            border-color: red;
+            border-color: #ff000f;
           }
         }
 
@@ -200,6 +210,11 @@ header {
       }
 
       button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 16px;
+        flex: 0;
         width: 84px;
         height: 28px;
         border: none;
