@@ -60,7 +60,11 @@ async function fetchCats(amount) {
       e.date = e.createdAt.substr(0, e.createdAt.indexOf("T"));
       e.img = Math.floor(Math.random() * 2);
     });
-  } else CATS_DATA = [CATS_DATA];
+  } else {
+    CATS_DATA.date = CATS_DATA.createdAt.substr(0, CATS_DATA.createdAt.indexOf("T"));
+    CATS_DATA.img = Math.floor(Math.random() * 2);
+    CATS_DATA = [CATS_DATA];
+  }
 }
 
 function reloadCats() {
