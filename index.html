@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="popup">
+      <div id="popup-box">
+        <div id="popup-box-top">
+          <img id="popup-icon" src="gfx/cat0.svg" alt="" />
+          <div>
+            <h1>ID: dsadsadsadsad</h1>
+            <h3>2018-01-04</h3>
+          </div>
+        </div>
+        <p>
+          A female cat will be pregnant for approximately 9 weeks between 62 and
+          65 days from conception to delivery.
+        </p>
+        <img id="popup-close" src="gfx/clear.svg" alt="" />
+      </div>
+    </div>
+    <header>
+      <img src="gfx/paw.svg" alt="" />
+      <nav>
+        <a class="active" href="index.html">Task 1</a>
+        <a href="">Task 2</a>
+      </nav>
+    </header>
+    <div id="wrapper">
+      <div id="toolbar">
+        <div id="search">
+          <div class="bar">
+            <input placeholder=" " type="number" min="1" required />
+            <p>Wartość ma być większa niż 0</p>
+          </div>
+          <button id="search-button">SZUKAJ</button>
+        </div>
+        <div id="filters">
+          <div id="filter-dates" class="filter">
+            <p>Sortuj po datach</p>
+            <div>
+              <img class="up" src="gfx/up.svg" alt="" />
+              <img class="down" src="gfx/down.svg" alt="" />
+            </div>
+          </div>
+          <div id="filter-ids" class="filter">
+            <p>Sortuj po id</p>
+            <div>
+              <img class="up" src="gfx/up.svg" alt="" />
+              <img class="down" src="gfx/down.svg" alt="" />
+            </div>
+          </div>
+          <img id="reload" src="gfx/cached.svg" alt="" />
+        </div>
+      </div>
+      <div id="content"></div>
+    </div>
+  </body>
+</html>
