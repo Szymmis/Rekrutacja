@@ -51,19 +51,23 @@ async function getCats(amount) {
 }
 
 async function fetchCats(amount) {
+  console.log(amount);
   await fetch(`https://cat-fact.herokuapp.com/facts/random?amount=${amount}`)
     .then((res) => res.json())
     .then((data) => (CATS_DATA = data));
-  CATS_DATA.forEach((e) => {
-    e.date = e.createdAt.substr(0, e.createdAt.indexOf("T"));
-  });
+  if (amount > 1) {
+    CATS_DATA.forEach((e) => {
+      e.date = e.createdAt.substr(0, e.createdAt.indexOf("T"));
+      e.img = Math.floor(Math.random() * 2);
+    });
+  } else CATS_DATA = [CATS_DATA];
 }
 
 function reloadCats() {
   $("#content").empty();
   CATS_DATA.forEach((e) => {
-    const { _id, date, text } = e;
-    $("#content").append(createCatElement(_id, date, text));
+    const { _id, date, text, img } = e;
+    $("#content").append(createCatElement(_id, date, text, img));
   });
 }
 
@@ -75,7 +79,7 @@ function showPopup(id, date, text, img) {
   $("#popup").css("visibility", "visible");
 }
 
-function createCatElement(id, date, text) {
+function createCatElement(id, date, text, img) {
   const box = $(
     `<div class="box">
         <div class="cat">
@@ -83,7 +87,6 @@ function createCatElement(id, date, text) {
     </div>`
   );
   const cat = box.find(".cat");
-  const img = Math.floor(Math.random() * 2);
   cat.append(`<img src="gfx/cat${img}.svg" />`);
   cat.append(
     `<div class="info">
