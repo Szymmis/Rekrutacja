@@ -3,6 +3,7 @@ $(() => {
 
   hideWorksersList();
   displayWorkers();
+  updateCounters();
 
   $(document).on("mousedown", () => hideWorksersList());
   $("#task-creator-workers-button").on("mousedown", (e) => {
