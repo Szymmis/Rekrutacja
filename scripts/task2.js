@@ -113,7 +113,6 @@ function createWorkerElement(worker) {
 
   element.on("click", (e) => {
     selectWorker(worker);
-    // e.stopPropagation();
     hideWorksersList();
   });
 
@@ -239,10 +238,3 @@ function filterTasks(method) {
   array.forEach((e) => list.append(createTaskElement(e)));
   updateCounters();
 }
-
-const LOREM = `Suspendisse egestas est eget ex dignissim pellentesque. Nam
-porttitor libero eget velit tincidunt, id accumsan massa feugiat.
-Nam cursus venenatis turpis eget viverra. Suspendisse ullamcorper
-ligula ut ultrices lobortis. Etiam congue vel ante id tempus.
-Pellentesque quis velit augue. Mauris quis risus venenatis,
-elementum sem a, bibendum magna. Nulla eget metus felis.`;
