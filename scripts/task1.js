@@ -1,4 +1,17 @@
+function setVH() {
+  const vh = window.innerHeight / 100;
+  console.log("resizing", { vh });
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  console.log(document.documentElement.style.getPropertyValue("--vh"));
+}
+
 $(() => {
+  setVH();
+
+  if (window.innerWidth > 600) {
+    $(window).on("resize", () => setVH());
+  }
+
   getCats(30);
 
   $(".bar input").on("keydown", (e) => {
