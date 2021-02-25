@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts/task2.js"></script>
+  </head>
+  <body>
+    <header>
+      <img src="gfx/paw.svg" alt="" />
+      <nav>
+        <a href="index.html">Task 1</a>
+        <a class="active" href="index2.html">Task 2</a>
+      </nav>
+    </header>
+    <div id="wrapper" class="--row">
+      <div id="left">
+        <div id="task-creator">
+          <button id="task-creator-workers">
+            <div id="task-creator-workers-button">
+              <b>Pracownik</b>
+              <img class="arrow" src="gfx/arrow.svg" />
+            </div>
+            <div id="task-creator-workers-list">
+              <input placeholder="Szukaj" type="text" />
+              <div>
+                <div class="worker">
+                  <img src="gfx/pan1.svg" alt="" />
+                  <p>Adam Nowak</p>
+                  <img class="icon-done" src="gfx/done.svg" alt="">
+                </div>
+                <div class="worker --active">
+                  <img src="gfx/pan1.svg" alt="" />
+                  <p>Michał Potoczek</p>
+                  <img class="icon-done" src="gfx/done.svg" alt="">
+                </div>
+                <div class="worker">
+                  <img src="gfx/pan1.svg" alt="" />
+                  <p>Antoni Worek</p>
+                  <img class="icon-done" src="gfx/done.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </button>
+          <textarea
+            placeholder="Zadanie"
+            name="task-info"
+            id=""
+            cols="30"
+            rows="10"
+          ></textarea>
+          <button id="task-creator-add">DODAJ</button>
+        </div>
+      </div>
+      <div id="center">
+        <div id="center-toolbar">
+          <button id="center-toolbar--show-all" class="--active">
+            POKAŻ WSZYSTKIE
+          </button>
+          <button id="center-toolbar--show-done">POKAŻ UKOŃCZONE</button>
+          <button id="center-toolbar--show-todo">POKAŻ NIEUKOŃCZONE</button>
+        </div>
+        <div id="task-list"></div>
+      </div>
+      <div id="right">
+        <div id="summary">
+          <h1>Podsumowanie</h1>
+          <div>
+            <p>Wszystkie zadania:</p>
+            <p id="summary-all">25</p>
+          </div>
+          <div>
+            <p>Ukończone zadania:</p>
+            <p id="summary-done">1</p>
+          </div>
+          <div>
+            <p>Nieukończone zadania:</p>
+            <p id="summary-todo">24</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
