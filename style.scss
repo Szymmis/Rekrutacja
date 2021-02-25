@@ -1,3 +1,5 @@
+$bigScreen: 960px;
+
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +14,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
+  font-size: Min(5vw, 24px);
 }
 
 #popup {
@@ -95,11 +98,18 @@ header {
   background: #f0f0f0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+  img {
+    width: 1.2em;
+    @media (min-width: $bigScreen) {
+      width: 50px;
+    }
+  }
+
   a {
     text-decoration: none;
     font-weight: 400;
     color: black;
-    font-size: 24px;
+    font-size: 1em;
     margin: 0 10px;
 
     &.active {
@@ -117,6 +127,11 @@ header {
   &.--row {
     justify-content: center;
     flex: 1;
+
+    @media (max-width: $bigScreen) {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
   }
 }
 
@@ -283,6 +298,8 @@ header {
 
   p {
     font-size: 14px;
+
+    max-width: 80%;
   }
 
   img {
@@ -314,23 +331,30 @@ header {
 }
 
 #left {
-  flex: 1;
   display: flex;
-  height: 100%;
+  @media (min-width: $bigScreen) {
+    flex: 1;
+    height: 100%;
+    padding-top: 164px;
+    min-width: 300px;
+  }
   background: #f0f0f0;
-  justify-content: center;
-
   box-sizing: border-box;
-  padding-top: 164px;
+  justify-content: center;
 
   #task-creator {
     display: flex;
     flex-direction: column;
     width: 80%;
+    max-width: 275px;
+    padding: 10px 0;
 
     &-workers {
       position: relative;
-      margin-bottom: 32px;
+      margin-bottom: 10px;
+      @media (min-width: $bigScreen) {
+        margin-bottom: 32px;
+      }
       border: none;
       outline: none;
 
@@ -416,6 +440,12 @@ header {
       border-radius: 4px;
       padding: 12px;
 
+      @media (max-width: $bigScreen) {
+        height: 40px;
+      }
+
+      resize: none;
+
       font-weight: 600;
       font-family: Roboto;
 
@@ -452,23 +482,47 @@ header {
 }
 
 #center {
-  flex: 2;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  @media (min-width: $bigScreen) {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &-toolbar {
+      margin-top: 85px;
+    }
+  }
 
   &-toolbar {
     display: flex;
-    justify-content: space-between;
-    padding: 0 5px;
-    margin-top: 85px;
+    justify-content: center;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding-top: 0.5em;
 
     button {
-      margin: 0 20px;
-      width: 195px;
-      height: 46px;
+      width: 33%;
+      font-size: 0.6em;
+      margin: 5px;
+      padding: 0.6em;
 
-      font-size: 14px;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+      &:nth-child(3) {
+        margin-right: 0;
+      }
+
+      @media (min-width: $bigScreen) {
+        padding: 0 10px;
+        flex: 1;
+        max-width: 195px;
+        height: 46px;
+        font-size: 14px;
+        margin: 0 10px;
+      }
 
       background: #ffdc64;
 
@@ -493,20 +547,33 @@ header {
   }
 
   #task-list {
-    margin-top: 32px;
+    margin-top: 1em;
+    @media (min-screen: $bigScreen) {
+      margin-top: 32px;
+
+      .task {
+        margin-bottom: 32px;
+      }
+    }
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    position: relative;
 
     .task {
       position: relative;
       //
-      width: 560px;
+      box-sizing: border-box;
+      width: 90%;
+      @media (min-width: $bigScreen) {
+        max-width: 560px;
+      }
+      margin-bottom: 1em;
       background: #f0f0f0;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 4px;
       padding: 20px;
-      margin-bottom: 32px;
 
       h1 {
         display: flex;
@@ -556,33 +623,83 @@ header {
   flex: 1;
   display: flex;
   justify-content: center;
+  @media (min-width: $bigScreen) {
+    justify-content: flex-start;
+  }
   align-items: flex-start;
+  padding-bottom: 80px;
 
   #summary {
-    top: 234px;
-    position: fixed;
-    background: #f0f0f0;
-    border-radius: 4px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 20px;
-
     h1 {
+      display: none;
       margin-bottom: 25px;
-      font-size: 18px;
+      font-size: 0.8em;
       text-align: center;
     }
 
-    div {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
+    @media (min-width: $bigScreen) {
+      top: 234px;
+      bottom: initial;
+      width: initial;
+      background: #f0f0f0;
+      margin-right: 10px;
 
-      p {
-        font-size: 14px;
+      h1 {
+        display: block;
+      }
+      padding: 20px;
+    }
+
+    box-sizing: border-box;
+    width: calc(100% - 10px);
+    bottom: 5px;
+    position: fixed;
+    background: #e2e2e2;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+
+    &-stats {
+      @media (max-width: $bigScreen) {
+        display: flex;
+
+        div {
+          flex: 1;
+          flex-direction: column;
+          text-align: center;
+          margin-bottom: 0 !important;
+
+          &:nth-child(2){
+            border: 1px solid black;
+            border-top: none;
+            border-bottom: none;
+          }
+        }
+
+        p:nth-child(1) {
+          font-weight: bold;
+          margin-bottom: 0.25em !important;
+        }
+
+        p {
+          margin: initial !important;
+        }
       }
 
-      p:nth-child(2) {
-        margin-left: 30px;
+      div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        
+
+        p {
+          font-size: 14px;
+        }
+
+        p:nth-child(2) {
+          margin-left: 30px;
+        }
       }
     }
   }

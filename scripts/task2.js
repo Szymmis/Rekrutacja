@@ -20,9 +20,7 @@ $(() => {
     });
 
   $("#task-creator-add").on("click", () => {
-    if (
-      addTask("01.01.2000", $("#task-creator textarea").val(), ACTIVE_WORKER)
-    ) {
+    if (addTask($("#task-creator textarea").val(), ACTIVE_WORKER)) {
       $("#task-creator textarea").val("");
       selectWorker(undefined);
     }
@@ -146,11 +144,16 @@ function createTaskElement(task) {
   return element;
 }
 
-function addTask(date, description, owner) {
+function addTask(description, owner) {
   if (description.length > 2 && owner != undefined) {
+    const date = new Date();
     const task = {
       id: ID_COUNTER++,
-      date,
+      date: `${(date.getDate() + "").padStart(2, "0")}.${(
+        date.getMonth() +
+        1 +
+        ""
+      ).padStart(2, "0")}.${date.getFullYear()}`,
       description,
       done: false,
       owner: owner.id,
