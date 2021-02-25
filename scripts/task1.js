@@ -91,10 +91,12 @@ function showPopup(id, date, text, img) {
   $("#popup p").text(text);
   $("#popup-icon").attr("src", `gfx/cat${img}.svg`);
   $("#popup").css("visibility", "visible");
+  $(document.body).css("overflow-y", "hidden");
 }
 
 function hidePopup() {
   $("#popup").css("visibility", "hidden");
+  $(document.body).css("overflow-y", "overlay");
 }
 
 function createCatElement(id, date, text, img) {
