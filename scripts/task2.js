@@ -2,14 +2,22 @@ $(() => {
   loadTasksFromMemory();
 
   hideWorksersList();
-  initWorkers();
+  displayWorkers();
 
   $(document).on("mousedown", () => hideWorksersList());
   $("#task-creator-workers-button").on("mousedown", (e) => {
     toggleWorkersList();
     e.stopPropagation();
   });
-  $("#task-creator-workers-list").on("mousedown", (e) => e.stopPropagation());
+  $("#task-creator-workers-list")
+    .on("mousedown", (e) => e.stopPropagation())
+    .find("input")
+    .on("input", (e) => {
+      const val = e.target.value.toLocaleLowerCase();
+      displayWorkers(
+        WORKERS.filter((w) => w.name.toLocaleLowerCase().includes(val))
+      );
+    });
 
   $("#task-creator-add").on("click", () => {
     if (
@@ -99,10 +107,11 @@ function createWorkerElement(worker) {
   return element;
 }
 
-function initWorkers() {
+function displayWorkers(workers) {
   const list = $("#task-creator-workers-list>div");
   list.empty();
-  WORKERS.forEach((w) => list.append(createWorkerElement(w)));
+  if (workers == undefined) workers = WORKERS;
+  workers.forEach((w) => list.append(createWorkerElement(w)));
 }
 
 const filterMethods = {

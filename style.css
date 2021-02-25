@@ -500,7 +500,7 @@ header a.active {
           flex: 1;
   border-top: 1px solid #757575;
   overflow-y: scroll;
-  max-height: 126px;
+  max-height: 148px;
 }
 
 #left #task-creator-workers-list > div::-webkit-scrollbar {
