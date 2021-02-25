@@ -12,7 +12,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow-x: hidden;
   font-size: Min(5vw, 24px);
 }
@@ -627,7 +627,7 @@ header {
     justify-content: flex-start;
   }
   align-items: flex-start;
-  padding-bottom: 80px;
+  min-height: 76px;
 
   #summary {
     h1 {
@@ -669,7 +669,7 @@ header {
           text-align: center;
           margin-bottom: 0 !important;
 
-          &:nth-child(2){
+          &:nth-child(2) {
             border: 1px solid black;
             border-top: none;
             border-bottom: none;
@@ -690,8 +690,6 @@ header {
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
-
-        
 
         p {
           font-size: 14px;

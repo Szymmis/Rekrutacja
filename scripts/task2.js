@@ -1,9 +1,21 @@
+function setVH() {
+  const vh = window.innerHeight / 100;
+  console.log("resizing", { vh });
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  console.log(document.documentElement.style.getPropertyValue("--vh"));
+}
+
 $(() => {
+  setVH();
+
+  if (window.innerWidth > 600) {
+    $(window).on("resize", () => setVH());
+  }
+
   loadTasksFromMemory();
 
   hideWorksersList();
   displayWorkers();
-  updateCounters();
 
   $(document).on("mousedown", () => hideWorksersList());
   $("#task-creator-workers-button").on("mousedown", (e) => {
@@ -78,6 +90,8 @@ function hideWorksersList() {
 function selectWorker(worker) {
   if (ACTIVE_WORKER != undefined && ACTIVE_WORKER.id != undefined)
     $(`#worker-${ACTIVE_WORKER.id}`).removeClass("--active");
+  $("#task-creator-workers-list input").val("");
+  displayWorkers();
   if (worker != undefined && worker.id != undefined) {
     $(`#worker-${worker.id}`).addClass("--active");
     $("#task-creator-workers-button b").text(worker.name);
@@ -174,6 +188,7 @@ function loadTasksFromMemory() {
   let data = localStorage.getItem("tasks");
   if (data != undefined) {
     TASKS = JSON.parse(data);
+    updateCounters();
     FILTER_METHOD = filterMethods.ALL;
     filterTasks(FILTER_METHOD);
   }
